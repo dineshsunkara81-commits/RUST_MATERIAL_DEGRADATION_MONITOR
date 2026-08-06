@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>🛡️ Rust / Material Degradation Monitor</h1>
+        <p class="hero-subtitle">AI-Powered Corrosion Risk Assessment & Maintenance Planning</p>
+        <div class="hero-buttons">
+            <a href="/add" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add Asset</a>
+            <a href="/dashboard" class="btn btn-outline"><i class="fas fa-chart-line"></i> View Dashboard</a>
+        </div>
+    </div>
+</div>
+
+<div class="features-grid">
+    <div class="feature-card">
+        <div class="feature-icon">🔬</div>
+        <h3>Corrosion Analysis</h3>
+        <p>Advanced AI algorithms predict corrosion risk based on material, environment, and age.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Real-time Dashboard</h3>
+        <p>Interactive charts and statistics for comprehensive asset monitoring.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3>Maintenance Planning</h3>
+        <p>Automated maintenance schedules and priority-based recommendations.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Report Generation</h3>
+        <p>Export detailed reports in CSV and PDF formats for documentation.</p>
+    </div>
+</div>
+
+<div class="stats-highlight">
+    <div class="stat-item">
+        <span class="stat-number" id="assetCount">0</span>
+        <span class="stat-label">Total Assets</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" id="highRisk">0</span>
+        <span class="stat-label">High Risk</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" id="mediumRisk">0</span>
+        <span class="stat-label">Medium Risk</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" id="lowRisk">0</span>
+        <span class="stat-label">Low Risk</span>
+    </div>
+</div>
+
+<script>
+    // Fetch statistics for the homepage
+    fetch('/dashboard-data')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('assetCount').textContent = data.total || 0;
+            document.getElementById('highRisk').textContent = data.high || 0;
+            document.getElementById('mediumRisk').textContent = data.medium || 0;
+            document.getElementById('lowRisk').textContent = data.low || 0;
+        })
+        .catch(() => {
+            // If API not available, show placeholder
+            document.getElementById('assetCount').textContent = '—';
+        });
+</script>
+{% endblock %}

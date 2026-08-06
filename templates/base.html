@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rust / Material Degradation Monitor</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-shield-halved"></i>
+                <span>Rust Monitor</span>
+            </div>
+            <nav>
+                <a href="/"><i class="fas fa-home"></i> Home</a>
+                <a href="/dashboard"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a href="/add"><i class="fas fa-plus-circle"></i> Add Asset</a>
+                <a href="/assets"><i class="fas fa-list"></i> View Assets</a>
+                <a href="/prediction"><i class="fas fa-robot"></i> Prediction</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>© 2026 Rust / Material Degradation Monitor | JNTUK R23 Project</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

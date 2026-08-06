@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="fas fa-robot"></i> Corrosion Risk Prediction</h2>
+    <p>AI-powered analysis for maintenance planning</p>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Asset</th>
+                <th>Material</th>
+                <th>Environment</th>
+                <th>Age</th>
+                <th>Risk</th>
+                <th>Maintenance Suggestion</th>
+                <th>Priority</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asset in assets %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><strong>{{ asset.Asset }}</strong></td>
+                <td><span class="material-badge">{{ asset.Material }}</span></td>
+                <td>{{ asset.Environment }}</td>
+                <td>{{ asset.Age }} yrs</td>
+                <td><span class="badge {{ asset.Risk|lower }}">{{ asset.Risk }}</span></td>
+                <td>
+                    {% if asset.Risk == "High" %}
+                        <span class="priority-urgent">🔴 Inspect Immediately</span>
+                    {% elif asset.Risk == "Medium" %}
+                        <span class="priority-medium">🟡 Inspect within 3 Months</span>
+                    {% else %}
+                        <span class="priority-low">🟢 Inspect within 6 Months</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if asset.Risk == "High" %}
+                        <span class="badge high">High Priority</span>
+                    {% elif asset.Risk == "Medium" %}
+                        <span class="badge medium">Medium Priority</span>
+                    {% else %}
+                        <span class="badge low">Low Priority</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
